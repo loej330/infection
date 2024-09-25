@@ -1,0 +1,20 @@
+
+Player:
+    # to know when another jump is available
+    grounded = False
+
+# three types of states:
+#   1. in the process of falling
+#   2. could be moving into a fall state
+
+def falling_collision():
+    for surface in surfaces:
+        if (
+            Player is in the same horizontal space as surface object AND
+            Player.bottom > surface.top AND
+            Player.bottom - gravity < surface.top
+        ):
+            Player.grounded = True
+            Player.bottom = surface.top
+        else:
+            Player.bottom -= gravity

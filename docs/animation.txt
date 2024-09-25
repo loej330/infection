@@ -1,0 +1,11 @@
+how to handle the management of different animation types:
+- response to a single press + hold duration:
+- active for a certain length of time, then fallback to default animation
+- always playing
+
+falling back: - oppinionated and hierarchical
+
+no_animation <- idle-animation <- walking <- turning
+
+the order of falling back if available; ie if walking is active fallback to it,
+otherwise go back to the idle animation

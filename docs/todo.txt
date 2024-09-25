@@ -1,0 +1,66 @@
+CURRENT TASK:
+    2: save data (starting with settings)
+CURRENT FOCUS:
+    - viruses
+
+Priority levels (1-5) = (important .. unimportant)
+
+FUTURE TASKS:
+    1: basic camera tracking to the player
+    4: Address cases where variables are being set during a render call when it should just be a variable ACCESS
+    4: viewable jump arc
+    3: why is clipping is possible in some cases
+    3: COLLISION: directly setting player y to the top of a surface should not result in a fall through wall
+    3: Definitive determination on how the getting and setting of x and y values should be handled,
+        considering x and y values that depend on others
+    2: make virus box collision more robust for a moving entity - ie the player
+    3: Find out definitively: when should a function be apart of a class?
+    2: improve the jump arc
+    1: hitbox for the player's 'sack'
+    1: pause functionality
+    4: address the concern that player state variables and input state is sometimes THE SAME EXACT THING AND MIGHT BE A WASTE OF TIME
+        - perhaps the solution is to auto link to a state variable
+        - perhaps we need a notion of different input types, HOLD and TOGGLE, and possibly others for 'assumed' behavior
+    4: Determine if there is a waste of render calls on things that wont be in the camera space
+    4: generalized rendering and collision for all world objects
+    3: dont play walking animation when player is pushing against a wall
+    4: make 'texture transforms' a functional array
+    3: sloped surfaces
+    4: line numbers on error messages - might not possible
+    3: function curve of momentum, rather than just linear
+    5: change the error image into something cooler
+    3: variables are better organized inside the world class - perhaps split into individual classes
+    2: finish jump animation
+    4: fill in the character linework with COLOR
+    5: look into progmatically changing the color of assets:
+        - should this be real time, or generated ahead of time
+        - what if I want to tweak the color scheme while the game is running?
+
+COMPLETED TASKS:
+
+9-13-24
+    2. make numbering system work with camera zoom
+9-12-24
+    1. make it possible for player to hold and drop virus
+9-11-24
+    1. re-implement turning animation
+Before tracking dates
+    2. basic inheritence so that functions like get_x1() dont need to be copy pasted all the time
+    2. refactor player so it matches syntax with surface or just have inheritance
+    - line to indicate where and how far player is about to suck/spit
+    - sucker surface colision
+    - visual needle hitbox
+    - bring numbering back to the grid
+    - walking animation errors
+    - activate walking animation when hitting the ground and LR key is already being pressed in the air
+    - Proper LR Handleing
+    - make the external libraries have equivilent behavior as if they were all in game.py
+    - seperate main code chunks into files
+    - bring back player texture after making hitbox the main THANG
+    - camera
+    - better implementation of hit boxes so that it makes sense
+    - left and right colisions
+    - Debug world not resetting on r
+    - SEE IF POSSIBLE: make player floor collision GENERIC so that it can 'look down' at aynthing and know if it is on a surface
+    - make hitbox the main THANG
+    - distinction between world coordinates and game coordinates (moving 10 units in the world should be consistent accorss zoom levels)

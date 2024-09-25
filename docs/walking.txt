@@ -1,0 +1,71 @@
+this logic will effect:
+	- current animation being played
+	- direction moving
+	- direction facing
+
+ALL CASES:
+
+[0, 0] -> [0, 0]    | do nothing            |
+[0, 0] -> [1, 0]    | start walking left	| D = LEFT; W = TRUE
+[0, 0] -> [0, 1]    | start walking right	| D = RIGHT; W = TRUE
+[0, 0] -> [1, 1]    | start walking right   | D = RIGHT; W = TRUE
+
+[1, 0] -> [0, 0]    | stop walking left     | W = FALSE
+[1, 0] -> [1, 0]    | continue walking left |
+[1, 0] -> [0, 1]    | turn right            | D = RIGHT
+[1, 0] -> [1, 1]    | continue walking left |
+
+[0, 1] -> [0, 0]    | stop walking right    | W = FALSE
+[0, 1] -> [1, 0]    | turn left             | D = LEFT
+[0, 1] -> [0, 1]    | keep walking right    |
+[0, 1] -> [1, 1]    | keep walking right    |
+
+[1, 1]<L> -> [0, 0] | stop walking left     | W = FALSE
+[1, 1]<L> -> [1, 0] | keep walking left     |
+[1, 1]<L> -> [0, 1] | turn right            | D = RIGHT
+[1, 1]<L> -> [1, 1] | keep walking left     |
+
+[1, 1]<R> -> [0, 0] | stop walking right    | W = FALSE
+[1, 1]<R> -> [1, 0] | turn left             | D = LEFT
+[1, 1]<R> -> [0, 1] | keep walking right    |
+[1, 1]<R> -> [1, 1] | keep walking right    |
+
+COMBED:
+- grouped by common outcomes
+- only when changes between states
+
+[0, 0] -> [1, 0]    | start walking left	| D = LEFT; W = TRUE
+[0, 0] -> [0, 1]    | start walking right	| D = RIGHT; W = TRUE
+[0, 0] -> [1, 1]    | start walking right   | D = RIGHT; W = TRUE
+
+[1, 0] -> [0, 0]    | stop walking left     | W = FALSE
+[1, 0] -> [0, 1]    | turn right            | D = RIGHT
+[1, 0] -> [1, 1]    | continue walking left |
+
+[0, 1] -> [0, 0]    | stop walking right    | W = FALSE
+[0, 1] -> [1, 0]    | turn left             | D = LEFT
+[0, 1] -> [1, 1]    | keep walking right    |
+
+[1, 1]<L> -> [0, 0] | stop walking left     | W = FALSE
+[1, 1]<L> -> [1, 0] | keep walking left     |
+[1, 1]<L> -> [0, 1] | turn right            | D = RIGHT
+
+[1, 1]<R> -> [0, 0] | stop walking right    | W = FALSE
+[1, 1]<R> -> [1, 0] | turn left             | D = LEFT
+[1, 1]<R> -> [0, 1] | keep walking right    |
+
+---
+[0, 0] -> [1, 0]    | start walking left	| D = LEFT; W = TRUE
+[0, 0] -> [0, 1]    | start walking right	| D = RIGHT; W = TRUE
+[0, 0] -> [1, 1]    | start walking right   | D = RIGHT; W = TRUE
+
+[0, 1] -> [1, 0]    | turn left             | D = LEFT
+[1, 1]<R> -> [1, 0] | turn left             | D = LEFT
+
+[1, 1]<L> -> [0, 1] | turn right            | D = RIGHT
+[1, 0] -> [0, 1]    | turn right            | D = RIGHT
+
+[1, 0] -> [0, 0]    | stop walking left     | W = FALSE
+[0, 1] -> [0, 0]    | stop walking right    | W = FALSE
+[1, 1]<L> -> [0, 0] | stop walking left     | W = FALSE
+[1, 1]<R> -> [0, 0] | stop walking right    | W = FALSE
