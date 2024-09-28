@@ -1,12 +1,12 @@
 CURRENT TASK:
-    2: save data (starting with settings)
+    1: basic camera tracking to the player
 CURRENT FOCUS:
     - viruses
 
 Priority levels (1-5) = (important .. unimportant)
 
 FUTURE TASKS:
-    1: basic camera tracking to the player
+    2: handle generally surfaces on top of surfaces and surfaces within surfaces
     4: Address cases where variables are being set during a render call when it should just be a variable ACCESS
     4: viewable jump arc
     3: why is clipping is possible in some cases
@@ -37,7 +37,8 @@ FUTURE TASKS:
         - what if I want to tweak the color scheme while the game is running?
 
 COMPLETED TASKS:
-
+9-26-24
+    2: save data (starting with settings)
 9-13-24
     2. make numbering system work with camera zoom
 9-12-24

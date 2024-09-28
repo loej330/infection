@@ -128,12 +128,12 @@ def render_items():
             (player.needle.get_x0(), player.needle.get_y0())
         ))
 
-    if world.show_grid:
+    if game.show_grid:
         render_grid()
         Window.screen.blit(*camera_transfrom(player.texture, player.xy))
         render_camera_deadzone()
 
-    if world.show_console:
+    if game.show_console:
         library.simple_text(console_font, pygame.Color('blue'), "\n".join(Debug.console), 10, 100)
 
     Window.total_frames += 1

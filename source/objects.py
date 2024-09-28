@@ -39,9 +39,11 @@ class Box():
     wh = [100, 100]
     weight = 10
     color = pygame.Color('blue')
+    anchor: None
 
     def __init__(self, **args):
         for key, val in args.items(): setattr(self, key, val)
+
         self.texture = pygame.Surface((self.wh), pygame.SRCALPHA)
         pygame.draw.rect(self.texture, self.color, pygame.Rect(0, 0, *self.wh), 4)
 
@@ -113,15 +115,6 @@ class Player(Box):
         self.frame = -1
         self.frame_hold = -1
 
-    # def get_needle_x(self):
-    #     return self.xy[0] + (self.wh[0]//2) - (self.needle.wh[0]//2)
-    # def get_needle_y(self):
-    #     return self.xy[1] - self.needle.wh[1]
-    # def get_needle_x1(self):
-    #     return self.get_needle_x() + self.needle.wh[0]
-    # def get_needle_y1(self):
-    #     return self.get_needle_y() + self.needle.wh[1]
-
 class Surface(Box):
     def __init__(self, **args):
         for key, val in args.items(): setattr(self, key, val)
@@ -142,16 +135,13 @@ class Virus(Box):
             xy = [0, 200]
         )
 
-class World():
-    # physics
-    # gravity = 15
-    gravity = 8
-
-    # game state
-    # debugging = True
-    # editing = False
+class Game():
     show_console = True
     show_grid = True
+
+class World():
+    # physics
+    gravity = 8
 
     mouse_xy = [0, 0]
     input_states = { input: States.DEPRESSED for input in Inputs }
@@ -189,7 +179,7 @@ class World():
         Surface(xy=[-500, 200], wh=[100, 100]),
         Surface(xy=[200, 350], wh=[100, 100]),
         Surface(xy=[000, 000], wh=[1000, 200]),
-        Surface(xy=[600, 200], wh=[200, 200]),
+        Surface(xy=[800, 200], wh=[200, 200]),
     ]
     # viruses = [ Virus(container=surfaces[3]) ]
     viruses = []
@@ -204,23 +194,21 @@ world = World()
 data_path = "data/settings.pkl"
 
 def delete_data():
+    console_log("Deleting")
     open(data_path, "w").close()
 
 def load_data():
+    global game
     if os.path.getsize(data_path) > 0:
-        console_log('Data exists')
+        with open('data/settings.pkl', 'rb') as file:
+            game = pickle.load(file)
     else:
-        console_log('Data does not exist')
+        game = Game()
+        console_log('Not loading data - does not exist')
 
-    # global world
-    # console_log(f"before loading: show_grid = {world.show_grid}")
-    # with open('data/settings.pkl', 'rb') as file:
-    #     world = pickle.load(file)
-    # console_log(f"after loading: show_grid = {world.show_grid}")
+def save_data():
+    console_log('Saving')
+    with open(data_path, 'wb') as file:
+        pickle.dump(game, file)
 
-def save_to_file():
-    console_log('saving')
-    # global world
-    # console_log(f"saving state: show_grid = {world.show_grid}")
-    # with open('data/settings.pkl', 'wb') as file:
-    #     pickle.dump(world, file)
+load_data()

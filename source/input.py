@@ -79,21 +79,23 @@ def process_input(events):
                 # console_log(camera.zoom)
 
     if pressing(Inputs.DEBUG_7):
-        load_data()
+        delete_data()
     if pressing(Inputs.DEBUG_8):
-        save_to_file()
+        load_data()
+    if pressing(Inputs.DEBUG_9):
+        save_data()
 
     world.mouse_xy = [ *pygame.mouse.get_pos() ]
     world.mouse_xy[1] = Window.height - world.mouse_xy[1]
 
     if pressing(Inputs.DEBUG_1):
-        if world.show_console: world.show_console= False
+        if game.show_console: game.show_console = False
         else:
-            world.show_console = True
+            game.show_console = True
             console_reset()
 
     if pressing(Inputs.DEBUG_2):
-        world.show_grid = not world.show_grid
+        game.show_grid = not game.show_grid
 
     if pressing(Inputs.PLACE):
         world.next_box.xy = world.mouse_xy

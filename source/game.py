@@ -28,6 +28,9 @@ def main_loop(events):
     source.logic.update_world()
     source.render.render_items()
 
+def quit():
+    source.objects.save_data()
+
 # needed because python does not properly destroy all imports from the context main.py
 def destroy():
     if 'source.constants' in sys.modules: del sys.modules['source.constants']

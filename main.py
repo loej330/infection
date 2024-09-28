@@ -39,6 +39,7 @@ def load_dynamic():
         if not hasattr(DLL, 'module'):
             DLL.module = importlib.import_module(DLL.module_name)
         else:
+            DLL.module.quit()
             DLL.module.destroy()
             importlib.reload(DLL.module)
 
@@ -60,6 +61,7 @@ def check_modified():
     return False
 
 def stop_running():
+    DLL.module.quit()
     pygame.quit()
     sys.exit()
 

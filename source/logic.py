@@ -46,12 +46,14 @@ def virus_bounce(virus: Virus):
         virus.xy[1] += virus.speed * virus.xy_direction[1]
 
 def track_camera():
-    pass
-    # console_log('I am not colliding with a deadzone')
-    # camera.xy = [
-    #     player.xy[0] - (Window.width//2),
-    #     player.xy[1] - (Window.height//2)
-    # ]
+    # if player.get_x0() <= camera.deadzone_x0:
+    #     camera.xy[0] -= 10
+    #     camera.deadzone_x0 -= 10
+    #     console_log("left of cam")
+    # if player.get_x1() >= camera.deadzone_x1:
+    #     camera.xy[0] += 10
+    #     camera.deadzone_x0 += 10
+    #     console_log("right of cam")
 
 ## ANIMATIONS ===================================================================
 
