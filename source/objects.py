@@ -29,8 +29,9 @@ class Camera():
     zoom = 1.0
     zoom_rate = 0.1
 
-    deadzone_x0, deadzone_y0 = [ 200, 200 ]
-    deadzone_w, deadzone_h = [500, 300]
+    # this might need to be in world coords
+    deadzone_x0, deadzone_y0 = [ 350, 200 ]
+    deadzone_w, deadzone_h = [ 200, 300]
     deadzone_x1, deadzone_y1 = [ deadzone_x0 + deadzone_w, deadzone_y0 + deadzone_h ]
 
 

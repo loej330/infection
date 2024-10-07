@@ -20,40 +20,39 @@ def update_momentum():
         player.x_momentum = min(player.x_momentum_max, player.x_momentum + player.x_momentum_inc)
 
 def virus_bounce(virus: Virus):
-        match virus.xy_direction:
-            case [1, 1]:
-                if virus.get_y1() >= virus.container.get_y1():
-                    virus.xy_direction[1] = -1
-                if virus.get_x1() >= virus.container.get_x1():
-                    virus.xy_direction[0] = -1
-            case [-1, 1]:
-                if virus.get_y1() >= virus.container.get_y1():
-                    virus.xy_direction[1] = -1
-                if virus.xy[0] <= virus.container.xy[0]:
-                    virus.xy_direction[0] = 1
-            case [1, -1]:
-                if virus.xy[1] <= virus.container.xy[1]:
-                    virus.xy_direction[1] = 1
-                if virus.get_x1() >= virus.container.get_x1():
-                    virus.xy_direction[0] = -1
-            case [-1, -1]:
-                if virus.xy[1] <= virus.container.xy[1]:
-                    virus.xy_direction[1] = 1
-                if virus.xy[0] <= virus.container.xy[0]:
-                    virus.xy_direction[0] = 1
+    match virus.xy_direction:
+        case [1, 1]:
+            if virus.get_y1() >= virus.container.get_y1():
+                virus.xy_direction[1] = -1
+            if virus.get_x1() >= virus.container.get_x1():
+                virus.xy_direction[0] = -1
+        case [-1, 1]:
+            if virus.get_y1() >= virus.container.get_y1():
+                virus.xy_direction[1] = -1
+            if virus.xy[0] <= virus.container.xy[0]:
+                virus.xy_direction[0] = 1
+        case [1, -1]:
+            if virus.xy[1] <= virus.container.xy[1]:
+                virus.xy_direction[1] = 1
+            if virus.get_x1() >= virus.container.get_x1():
+                virus.xy_direction[0] = -1
+        case [-1, -1]:
+            if virus.xy[1] <= virus.container.xy[1]:
+                virus.xy_direction[1] = 1
+            if virus.xy[0] <= virus.container.xy[0]:
+                virus.xy_direction[0] = 1
 
-        virus.xy[0] += virus.speed * virus.xy_direction[0]
-        virus.xy[1] += virus.speed * virus.xy_direction[1]
+    virus.xy[0] += virus.speed * virus.xy_direction[0]
+    virus.xy[1] += virus.speed * virus.xy_direction[1]
 
 def track_camera():
-    # if player.get_x0() <= camera.deadzone_x0:
-    #     camera.xy[0] -= 10
-    #     camera.deadzone_x0 -= 10
-    #     console_log("left of cam")
-    # if player.get_x1() >= camera.deadzone_x1:
-    #     camera.xy[0] += 10
-    #     camera.deadzone_x0 += 10
-    #     console_log("right of cam")
+    player_cam_x0 = player.get_x0() - camera.xy[0]
+    player_cam_x1 = player.get_x1() - camera.xy[0]
+
+    if player_cam_x0 < camera.deadzone_x0:
+        camera.xy[0] -= camera.deadzone_x0 - player_cam_x0
+    if player_cam_x1 > camera.deadzone_x1:
+        camera.xy[0] += player_cam_x1 - camera.deadzone_x1
 
 ## ANIMATIONS ===================================================================
 
